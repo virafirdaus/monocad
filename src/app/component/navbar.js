@@ -5,7 +5,7 @@ import Image from "next/image"
 
 function Menu({ onClose }) {
   return (
-    <div className="fixed inset-0 bg-black">
+    <div className="fixed inset-0 bg-black z-[9999]">
 
       <button onClick={onClose} className=" cursor-pointer absolute top-8 right-30 bg-red-700 text-white px-6 py-2">
         <h4>CLOSE ×</h4>
@@ -38,7 +38,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <nav className="flex justify-between items-center px-30 py-8">
+    <nav className="flex justify-between items-center px-30 py-8 z-50" >
       <h4>MONOCAD</h4>
       <h4 className="cursor-pointer text-black px-6 py-2" onClick={() => setMenuOpen(true)}>MENU +</h4>
 
