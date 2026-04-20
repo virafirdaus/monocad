@@ -1,8 +1,49 @@
 @import "tailwindcss";
 
 :root {
+  /* Colors */
   --background: #ffffff;
-  --foreground: #171717;
+  --neutral2: #E8E8E8;
+  --neutral3: #BCBCBC;
+  --neutral4: #797979;
+  --neutral5: #0A0A0A;
+  --accent1: #FCD5C9;
+  --accent2: #F9A395;
+  --accent3: #EF655F;
+  --accent4: #E03841;
+  --accent5: #CC001E;
+
+  /* Typography */
+  --text-extraH1: 150px;
+  --text-extraH2: 120px;
+  --text-H1: 52px;
+  --text-H2: 40px;
+  --text-H3: 32px;
+  --text-H4: 24px;
+  --text-H5: 20px;
+  --text-H6: 20px;
+  --text-H6: 16px;
+  --text-H6: 14px;
+  --text-B1: 20px;
+  --text-B2: 16px;
+  --text-B3: 14px;
+
+  /* Line-Height */
+  --lh-extraH1: 1em;
+  --lh-extraH2: 1.08em;
+  --lh-H1: 1.18em;
+  --lh-H2: 1.2em;
+  --lh-H3: 1.22em;
+  --lh-H4: 1.24em;
+  --lh-H5: 1.26em;
+  --lh-H5: 1.28em;
+  --lh-bodytext: 1.5em;
+
+  /* Font-Weight */
+  --fw-regular: 400;
+  --fw-medium: 500;
+  
+
 }
 
 @theme inline {
@@ -10,17 +51,138 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+   /* Colors */
+  --color-neutral2: var(--neutral2);
+  --color-neutral3: var(--neutral3);
+  --color-neutral4: var(--neutral4);
+  --color-neutral5: var(--neutral5);
+  --color-accent1: var(--accent1);
+  --color-accent2: var(--accent2);
+  --color-accent3: var(--accent3);
+  --color-accent4: var(--accent4);
+  --color-accent5: var(--accent5);
+
+  /* Typography */
+  --text-extraH1: 150px;
+  --text-extraH2: 120px;
+  --text-H1: 52px;
+  --text-H2: 40px;
+  --text-H3: 32px;
+  --text-H4: 24px;
+  --text-H5: 20px;
+  --text-H6: 20px;
+  --text-H6: 16px;
+  --text-H6: 14px;
+  --text-B1: 20px;
+  --text-B2: 16px;
+  --text-B3: 14px;
+
+  /* Font-Family */
+  --font-notch: var(--font-notch);
+  --font-headline: var(--font-headline);
+  --font-text: var(--font-text);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Base Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-headline)
+}
+
+p {
+  font-family: var(--font-text)
+}
+
+h1 {
+  font-family: var(--font-headline);
+  font-size: var(--text-H1);
+  line-height: var(--lh-extraH1);
+  color: var(--neutral5);
+}
+
+h1.extra {
+  font-family: var(--font-notch);
+  font-size: var(--text-extraH1);
+  line-height: var(--lh-extraH1);
+  color: var(--neutral5);
+  letter-spacing: -0.03em;
+}
+
+h1.extra2 {
+  font-family: var(--font-notch);
+  font-size: var(--text-extraH2);
+  line-height: var(--lh-extraH2);
+  color: var(--neutral5);
+  letter-spacing: -0.03em;
+}
+
+h2 {
+  font-family: var(--font-headline);
+  font-size: var(--text-H2);
+  line-height: var(--lh-H2);
+  color: var(--neutral5);
+}
+
+h3 {
+  font-family: var(--font-headline);
+  font-size: var(--text-H3);
+  line-height: var(--lh-H3);
+  color: var(--neutral5);
+}
+
+h4 {
+  font-family: var(--font-headline);
+  font-size: var(--text-H4);
+  line-height: var(--lh-H4);
+  color: var(--neutral5);
+}
+
+h5 {
+  font-family: var(--font-headline);
+  font-size: var(--text-H5);
+  line-height: var(--lh-H5);
+  color: var(--neutral5);
+}
+
+h6 {
+  font-family: var(--font-headline);
+  font-size: var(--text-H6);
+  line-height: var(--lh-H6);
+  color: var(--neutral5);
+}
+
+p {
+  font-family: var(--font-text);
+  font-size: var(--text-B1);
+  line-height: var(--lh-B1);
+  color: var(--neutral5);
+}
+
+p.b2 {
+  font-family: var(--font-text);
+  font-size: var(--text-B2);
+  line-height: var(--lh-B2);
+  color: var(--neutral5);
+}
+
+p.b3 {
+  font-family: var(--font-text);
+  font-size: var(--text-B3);
+  line-height: var(--lh-B3);
+  color: var(--neutral5);
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+
 }
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+
+}
+
+
+  
