@@ -1,12 +1,16 @@
-export default function Footer() {
+import {getFooterData} from "@/lib/api";
+
+export default async function Page() {
+    const footer = await getFooterData()
+
     return (
         <>
-        <footer className="px-30 py-8 flex flex-col" style={{ gap: "208px" }}>
+        <footer className="px-8 md:px-30 py-8 flex flex-col" style={{ gap: "clamp(60px, 15vw, 208px)" }}>
 
             {/* Top Bar */}
-            <div className="flex justify-between items-center">
-                <h4>MONOCAD</h4>
-                <div className="flex items-center gap-4">
+            <div className= "footer-top" style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+                <h4>{footer.logo_text}</h4>
+                <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
                     <p className="b2">ABOUT</p>
                     <span style={{ width: "8px", height: "8px", background: "black", display: "block" }}></span>
                     <p className="b2">SERVICES</p>
@@ -16,27 +20,27 @@ export default function Footer() {
             </div>
 
             {/* Middle Content */}
-            <div className="flex justify-between items-start">
-                <div className="flex items-center gap-4">
-                    <h2>TALK TO US NOW</h2>
+            <div className="footer-middle" style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "flex-start", gap: "32px" }}>
+                <div>
+                    <h2>{footer.talk_label}</h2>
                 </div>
-                <div className="flex flex-col gap-4">
+                <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
                     <p className="b2">404</p>
                     <p className="b2">LICENSE</p>
                     <p className="b2">CHANGELOG</p>
                     <p className="b2">STYLE GUIDE</p>
                 </div>
-                <div className="flex flex-col gap-4">
-                    <p className="b2">1287 MAPLE CRESCENT, CITYVILLE</p>
-                    <p className="b2">HELLO@8AM.DESIGN</p>
-                    <p className="b2">(+01) 234 567 89</p>
+                <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+                    <p className="b2">{footer.alamat}</p>
+                    <p className="b2">{footer.email}</p>
+                    <p className="b2">{footer.phone}</p>
                 </div>
             </div>
 
             {/* Bottom Bar */}
-            <div className="flex justify-between items-center">
-                <p className="b2">© 2025 MONOCAD. CREATE BY 8AM</p>
-                <div className="flex items-center gap-4">
+            <div className="footer-bottom" style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+                <p className="b2">{footer.copyright}</p>
+                <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
                     <p className="b2">THREADS</p>
                     <span style={{ width: "8px", height: "8px", background: "black", display: "block" }}></span>
                     <p className="b2">INSTAGRAM</p>
@@ -49,7 +53,7 @@ export default function Footer() {
 
         {/* Big MONOCAD */}
         <section className="bg-black w-full overflow-hidden">
-            <h1 style={{ fontSize: "283px", color: "var(--background)", textAlign: "center" }}>
+            <h1 style={{ fontSize: "clamp(60px, 20vw, 283px)", color: "var(--background)", textAlign: "center" }}>
                 MONOCAD
             </h1>
         </section>
