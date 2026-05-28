@@ -18,7 +18,7 @@ import {getCtaData} from "@/lib/api";
           </div>
 
           {/* Content*/}
-          <div className="flex-1 flex flex-col items-center justify-center gap-6 px-30">
+          <div className="flex-1 flex flex-col items-center justify-center gap-6" style={{ paddingLeft: "clamp(20px, 8vw, 120px)", paddingRight: "clamp(20px, 8vw, 120px)"}}>
             <h1 className="extra2 text-center">{cta.cta_headline}</h1>
             <div className="flex items-center gap-2">
               <span style={{ width: "12px", height: "12px", background: "var(--accent5)", display: "block" }}></span>

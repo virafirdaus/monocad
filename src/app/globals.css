@@ -184,8 +184,15 @@ body {
 
 }
 
+@media (max-width: 1024px) {
+  .padding-section {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+}
+
 @media (max-width: 768px) {
-  .hero-section,
+  .padding-section,
   .about-section,
   .content-testi,
   .footer-top,
@@ -199,6 +206,8 @@ body {
     gap: 24px !important;
   }
 }
+
+
 
 
   

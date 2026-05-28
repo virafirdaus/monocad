@@ -25,37 +25,39 @@ export default async function Page() {
  
       {/* ───── HERO SECTION ───── */}
       <section
-        className="hero-section px-30"
-        style={{ paddingTop: "148px", paddingBottom: "30px" }}
-      >
-        {/* HeroText + Button */}
-       <div className="flex flex-row justify-between items-end w-full">
-          <p
-            className="text-sm md:text-base"
-            style={{ maxWidth: "407px",color: "var(--neutral3)" }}
-          >
-            {hero.subheading}
-          </p>
-          <Button />
-        </div>
- 
+        className="padding-section"
+        style={{ paddingTop: "148px", paddingBottom: "30px", paddingLeft: "clamp(20px, 8vw, 120px)", paddingRight: "clamp(20px, 8vw, 120px)" }}>
+
+          {/* HeroText + Button */}
+            <div className="flex flex-row justify-between items-end w-full">
+                <p
+                  className="text-sm md:text-base"
+                  style={{ maxWidth: "407px",color: "var(--neutral3)" }}
+                >
+                  {hero.subheading}
+                </p>
+                <Button />
+              </div>
+  
         {/* BigTitle — font & translate scale proporsional dengan viewport */}
         <div
-          className="whitespace-nowrap overflow-hidden"
-          style={{
-            fontSize: "clamp(56px, 18vw, 280px)",
-            fontFamily: "var(--font-notch)",
-            paddingTop: "clamp(32px, 6vw, 148px)",
-          }}
-        >
-          <span style={{ display: "inline-block", transform: "rotate(-45deg) translate(clamp(0.4rem,0.7vw,2rem), clamp(0.4rem,0.7vw,1.9rem))" }}>M</span>
-          <span style={{ display: "inline-block", transform: "rotate(-9deg) translate(0rem, clamp(1.2rem,2.2vw,6rem))" }}>O</span>
-          <span style={{ display: "inline-block", transform: "rotate(43deg) translate(clamp(0.4rem,0.7vw,2rem), clamp(0.06rem,0.1vw,0.3rem))" }}>N</span>
-          <span style={{ display: "inline-block", transform: "rotate(-138deg) translate(clamp(-0.7rem,-1.3vw,-3.6rem), clamp(-0.8rem,-1.5vw,-4rem))" }}>O</span>
-          <span style={{ display: "inline-block", transform: "rotate(-21deg) translate(clamp(-0.8rem,-1.4vw,-3.9rem), clamp(-1.4rem,-2.6vw,-7rem))" }}>C</span>
-          <span style={{ display: "inline-block", transform: "rotate(-9deg) translate(clamp(-2.3rem,-4.4vw,-12rem), clamp(0.7rem,1.3vw,3.5rem))" }}>A</span>
-          <span style={{ display: "inline-block", transform: "rotate(-97deg) translate(clamp(-1rem,-1.8vw,-5rem), clamp(-2.3rem,-4.4vw,-12rem))" }}>D</span>
-        </div>
+        style={{
+          fontSize: "clamp(56px, 18vw, 280px)",
+          fontFamily: "var(--font-notch)",
+          paddingTop: "clamp(32px, 6vw, 148px)",
+          position: "relative",
+          height: "clamp(220px, 38vw, 520px)",
+          overflow: "visible",
+        }}
+      >
+        <span style={{ position: "absolute", left: "4%",   top: "20%", display: "inline-block", transform: "rotate(-45deg)" }}>M</span>
+        <span style={{ position: "absolute", left: "18%",  top: "40%", display: "inline-block", transform: "rotate(-5deg)" }}>O</span>
+        <span style={{ position: "absolute", left: "35%",  top: "28%", display: "inline-block", transform: "rotate(45deg)" }}>N</span>
+        <span style={{ position: "absolute", left: "48%",  top: "40%", display: "inline-block", transform: "rotate(-138deg)" }}>O</span>
+        <span style={{ position: "absolute", left: "58%",  top: "11.5%",display: "inline-block", transform: "rotate(-21deg)" }}>C</span>
+        <span style={{ position: "absolute", left: "68%",  top: "40%", display: "inline-block", transform: "rotate(-9deg)" }}>A</span>
+        <span style={{ position: "absolute", left: "82%",  top: "45%", display: "inline-block", transform: "rotate(-97deg)" }}>D</span>
+      </div>
  
         {/* 3D CAROUSEL — ukuran & translateZ responsif */}
         <div
@@ -109,7 +111,7 @@ export default async function Page() {
 
 
     {/* ABOUT SECTION */}
-    <section className="about-section bg-neutral5 flex flex-col px-30 py-8" style={{ minHeight: "100vh" }}>
+    <section className="padding-section bg-neutral5 flex flex-col px-30 py-8" style={{ minHeight: "100vh", paddingLeft: "clamp(20px, 8vw, 120px)", paddingRight: "clamp(20px, 8vw, 120px)"}}>
 
       {/* Topbar */}
        < Topbar 
@@ -139,7 +141,7 @@ export default async function Page() {
 
 
     {/* SERVICES SECTION */}
-    <section className="relative bg-white" style={{ height: "650vh" }}>
+    <section className="padding-section relative bg-white" style={{ height: "650vh"}}>
 
       {/* SERVICES sticky wrapper */}
       <div className="sticky top-0 h-screen flex flex-col justify-between pointer-events-none overflow-visible">
@@ -263,7 +265,7 @@ export default async function Page() {
         </div>
 
       {/* Content-testi */}
-      <div className="content-testi flex flex-col gap-[100px] z-1 px-30">
+      <div className="content-testi flex flex-col gap-[100px] z-1" style={{ paddingLeft: "clamp(20px, 8vw, 120px)", paddingRight: "clamp(20px, 8vw, 120px)"}}>
 
               {/* client */}
               <div className="flex  justify-between items-center">
