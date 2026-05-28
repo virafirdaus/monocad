@@ -248,7 +248,7 @@ export default async function Page() {
     {/* TESTIMONIALS */}
 
     <section className="flex flex-col justify-between h-screen py-8"
-    style={{ backgroundImage: "url('/images/bg-testi.png')" , backgroundSize: "cover", backgroundPosition: "center", position: "relative"}}>
+    style={{ backgroundImage: "url('/Images/bg-testi.png')" , backgroundSize: "cover", backgroundPosition: "center", position: "relative"}}>
 
       
       {/* Overlay Image Testi */}
