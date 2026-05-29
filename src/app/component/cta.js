@@ -28,13 +28,17 @@ import {getCtaData} from "@/lib/api";
           </div>
 
           {/* Images Row*/}
-          <div className="flex items-end justify-center">
-            {cta.images.map((url, i) => (
-               <div key={i} style={{ width: "200px", height: "256px", overflow: "hidden", flexShrink: 0}}>
-              <img src={url} className="w-full h-full object-cover" />
+            <div className="flex items-end justify-center">
+              {cta.images.map((url, i) => (
+                <div key={i} className="overflow-hidden flex-shrink-0"
+                  style={{ 
+                    width: "clamp(150px, 25vw, 200px)", 
+                    height: "clamp(200px, 32vw, 256px)"
+                  }}>
+                  <img src={url} className="w-full h-full object-cover" />
+                </div>
+              ))}
             </div>
-            ))}
-          </div>
         </section>
     )
   }
