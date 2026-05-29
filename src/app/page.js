@@ -29,9 +29,9 @@ export default async function Page() {
         style={{ paddingTop: "148px", paddingBottom: "30px", paddingLeft: "clamp(20px, 8vw, 120px)", paddingRight: "clamp(20px, 8vw, 120px)" }}>
 
           {/* HeroText + Button */}
-            <div className="flex flex-row justify-between items-end w-full">
+            <div className="flex flex-col md:flex-row justify-between items-center md:items-end w-full gap-4">
                 <p
-                  className="text-sm md:text-base"
+                  className="text-sm md:text-base text-center md:text-left"
                   style={{ maxWidth: "407px",color: "var(--neutral3)" }}
                 >
                   {hero.subheading}
@@ -140,70 +140,83 @@ export default async function Page() {
 
 
 
-    {/* SERVICES SECTION */}
-    <section className="padding-section relative bg-white" style={{ height: "650vh"}}>
+{/* SERVICES SECTION */}
+<section className="padding-section relative bg-white" style={{ height: "650vh"}}>
 
-      {/* SERVICES sticky wrapper */}
-      <div className="sticky top-0 h-screen flex flex-col justify-between pointer-events-none overflow-visible">
+  {/* SERVICES sticky wrapper */}
+  <div className="sticky top-0 h-screen flex flex-col justify-between pointer-events-none overflow-visible">
 
-        {/* Marquee SERVICES */}
-        <div className="overflow-hidden w-full">
-          <h1 className="extra2 leading-none whitespace-nowrap">
-           SERVICES · SERVICES · SERVICES · SERVICES ·
-        </h1>
-        </div>
-      
-      <div className="px-30 py-8">
-          {/* Topbar */}
-          < Topbar 
-          theme="light"
-          leftText="KEEP SCROLLING"
-          rightcontent={<Button />}
-          />
-       </div>
+    {/* Marquee SERVICES */}
+    <div className="overflow-hidden w-full">
+      <h1 
+          className="extra2 leading-none whitespace-nowrap"
+        >
+          SERVICES · SERVICES · SERVICES · SERVICES ·
+      </h1>
+    </div>
+    
+    <div className="px-6 md:px-30 py-8">
+      {/* Topbar */}
+      <Topbar 
+        theme="light"
+        leftText="KEEP SCROLLING"
+        rightcontent={<Button />}
+      />
+    </div>
 
-      </div>
+  </div>
 
-      {/* Image-Floating */}
-      <div className="absolute top-0 left-0 w-full" style={{ top: "100vh" }}>
-        {services.map((service, i) => (
-          <div
-            key={service.id}
-            className="flex justify-center"
-            style={{ position: "absolute", top: `${i * 800}px`, width: "100%" }}
-          >
-            <div className="w-[350px] h-[450px] relative">
-              <img src={service.image_url} className="w-full h-full object-cover" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <h6
-                  className="px-6 py-2 text-xs tracking-widest text-center font-medium"
-                  style={{
-                    background: "white",
-                    color: "black",
-                    mixBlendMode: "difference",
-                  }}
-                >
-                  {service.label}
-                </h6>
-              </div>
-            </div>
+  {/* Image-Floating */}
+  <div className="absolute top-0 left-0 w-full" style={{ top: "100vh" }}>
+    {services.map((service, i) => (
+      <div
+        key={service.id}
+        className="flex justify-center"
+        style={{ 
+          position: "absolute", 
+          top: `clamp(${i * 400}px, ${i * 55}vw, ${i * 800}px)`,
+          width: "100%" 
+        }}
+      >
+        <div className="w-[230px] h-[330px] md:w-[350px] md:h-[450px] relative">
+          <img src={service.image_url} className="w-full h-full object-cover" />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <h6
+              className="px-4 py-1 text-center font-medium whitespace-nowrap"
+              style={{
+                background: "white",
+                color: "black",
+                mixBlendMode: "difference",
+              }}
+            >
+              {service.label}
+            </h6>
           </div>
-        ))}
+        </div>
       </div>
+    ))}
+  </div>
+
 </section>
 
 
 
-   {/* PROJECTS */}
-<section className="flex flex-col justify-between gap-33  overflow-hidden">
+{/* PROJECTS */}
+<section className="flex flex-col justify-between gap-33 overflow-hidden">
 
   {/* Row Top */}
   <div className="flex justify-between">
-    {projects.filter(p => p.row_position === 1).map((project) => (
-      <div key={project.id} style={{ width: project.width, height: project.height, flexShrink: 0, position: "relative" }}>
+    {projects.filter(p => p.row_position === 1).map((project, i) => (
+      <div key={project.id} 
+        className={`relative project-card ${i >= 3 ? "hidden md:block" : ""}`}
+        style={{ 
+          width: project.width,
+          height: project.height,
+          flexShrink: 0 
+        }}>
         <img src={project.image_url} className="w-full h-full object-cover" />
         <div className="absolute inset-0 flex items-center justify-center">
-          <p className="px-4 py-1 text-xs tracking-widest font-medium"
+          <p className="px-2 py-1 text-xs tracking-widest font-medium"
             style={{ background: "white", color: "black", mixBlendMode: "difference" }}>
             {project.label}
           </p>
@@ -213,12 +226,18 @@ export default async function Page() {
   </div>
 
   {/* Row Center */}
-  <div className="flex justify-center items-center gap-[200]">
-    {projects.filter(p => p.row_position === 2).map((project) => (
-      <div key={project.id} style={{ width: project.width, height: project.height, flexShrink: 0, position: "relative"}}>
+  <div className="flex justify-center items-center gap-4 md:gap-[200px]">
+    {projects.filter(p => p.row_position === 2).map((project, i) => (
+      <div key={project.id}
+        className={`relative project-card ${i >= 3 ? "hidden md:block" : ""}`}
+        style={{ 
+          width: project.width,
+          height: project.height,
+          flexShrink: 0 
+        }}>
         <img src={project.image_url} className="w-full h-full object-cover" />
         <div className="absolute inset-0 flex items-center justify-center">
-          <p className="px-4 py-1 text-xs tracking-widest font-medium"
+          <p className="px-2 py-1 text-xs tracking-widest font-medium"
             style={{ background: "white", color: "black", mixBlendMode: "difference" }}>
             {project.label}
           </p>
@@ -229,11 +248,17 @@ export default async function Page() {
 
   {/* Row Bottom */}
   <div className="flex justify-between items-center">
-    {projects.filter(p => p.row_position === 3).map((project) => (
-      <div key={project.id} style={{ width: project.width, height: project.height, flexShrink: 0, position: "relative" }}>
+    {projects.filter(p => p.row_position === 3).map((project, i) => (
+      <div key={project.id}
+        className={`relative project-card ${i >= 3 ? "hidden md:block" : ""}`}
+        style={{ 
+          width: project.width,
+          height: project.height,
+          flexShrink: 0 
+        }}>
         <img src={project.image_url} className="w-full h-full object-cover" />
         <div className="absolute inset-0 flex items-center justify-center">
-          <p className="px-4 py-1 text-xs tracking-widest font-medium"
+          <p className="px-2 py-1 text-xs tracking-widest font-medium"
             style={{ background: "white", color: "black", mixBlendMode: "difference" }}>
             {project.label}
           </p>
@@ -245,62 +270,64 @@ export default async function Page() {
 </section>
 
 
-    {/* TESTIMONIALS */}
+{/* TESTIMONIALS */}
+<section className="flex flex-col justify-between h-screen py-8"
+  style={{ backgroundImage: "url('/Images/bg-testi.png')", backgroundSize: "cover", backgroundPosition: "center", position: "relative"}}>
 
-    <section className="flex flex-col justify-between h-screen py-8"
-    style={{ backgroundImage: "url('images/bg-testi.png')" , backgroundSize: "cover", backgroundPosition: "center", position: "relative"}}>
+  {/* Overlay Image Testi */}
+  <div style={{position: "absolute", inset: 0, background: "rgba(0, 0, 0, 0.5)"}}></div>
 
-      
-      {/* Overlay Image Testi */}
-      <div 
-        style={{position: "absolute", inset: 0, background: "rgba(0, 0, 0, 0.5)"}}>
+  {/* Marquee */}
+  <div className="overflow-hidden w-full z-1">
+    <h1 className="extra2 leading-none whitespace-nowrap" style={{ color: "var(--background)" }}>
+      TESTIMONIALS · TESTIMONIALS · TESTIMONIALS · TESTIMONIALS ·
+    </h1>
+  </div>
+
+  {/* Content-testi */}
+ {/* Content-testi */}
+<div className="content-testi flex flex-col z-1 gap-6 md:gap-[100px] flex-1 justify-center" 
+  style={{ paddingLeft: "clamp(20px, 8vw, 120px)", paddingRight: "clamp(20px, 8vw, 120px)"}}>
+
+    {/* client — mobile: 1 nama center, desktop: 3 nama space-between */}
+    <div className="flex justify-center md:justify-between items-center">
+      <h2 className="block" style={{ color: "var(--background)" }}>{testimonials[0]?.client_name}</h2>
+      <h2 className="hidden md:block" style={{ color: "var(--background)", opacity:"50%" }}>{testimonials[1]?.client_name}</h2>
+      <h2 className="hidden md:block" style={{ color: "var(--background)", opacity:"50%" }}>{testimonials[2]?.client_name}</h2>
+    </div>
+
+    {/* Indikator */}
+    <div className="flex items-center gap-4">
+      <p className="b3" style={{ color: "var(--background)" }}>
+        0{testimonials[0]?.sort_order}
+      </p>
+      <div style={{ flex: 1, height: "1px", background: "rgba(255,255,255,0.4)" }}>
+        <div style={{height: "1px", width: "30%", background: "var(--background)"}}></div>
       </div>
-      
-  
-      {/* Marquee*/}
-        <div className="overflow-hidden w-full z-1">
-          <h1 className=" extra2 leading-none whitespace-nowrap" style={{ color: "var(--background)" }}>
-            TESTIMONIALS · TESTIMONIALS · TESTIMONIALS · TESTIMONIALS ·
-          </h1>
-        </div>
+    </div>
 
-      {/* Content-testi */}
-      <div className="content-testi flex flex-col gap-[100px] z-1" style={{ paddingLeft: "clamp(20px, 8vw, 120px)", paddingRight: "clamp(20px, 8vw, 120px)"}}>
+    {/* Testi-Text */}
+<div className="flex justify-center md:justify-end">
+  <p className="b2 text-center md:text-right" style={{ 
+    color: "var(--background)", 
+    maxWidth: "clamp(200px, 80vw, 40%)"
+  }}>
+    {testimonials[0]?.review}
+  </p>
+</div>
+  </div>
 
-              {/* client */}
-              <div className="flex  justify-between items-center">
-                <h2 style={{ color: "var(--background)" }}>{testimonials[0]?.client_name}</h2>
-                <h2 style={{ color: "var(--background)", opacity:"50%" }}>{testimonials[1].client_name}</h2>
-                <h2 style={{ color: "var(--background)", opacity:"50%" }}>{testimonials[2]?.client_name}</h2>
-              </div>
+  {/* Topbar — di luar content-testi, tetap di bawah section */}
+<div style={{ paddingLeft: "clamp(20px, 8vw, 120px)", paddingRight: "clamp(20px, 8vw, 120px)" }} className="z-1">
+  <Topbar 
+    theme="dark"
+    leftText="KEEP SCROLLING"
+    rightText=""
+    mobileCenter={true}
+  />
+</div>
 
-               {/* Indikator */}
-              <div className="flex items-center gap-4">
-                <p className="b3" style={{ color: "var(--background)" }}>
-                  0{testimonials[0]?.sort_order}
-                  </p>
-                <div style={{ flex: 1, height: "1px", background: "rgba(255,255,255,0.4)" }}>
-                  <div style={{height: "1px", width: "30%", background: "var(--background)"}}></div>
-                </div>
-              </div>
-
-              {/* Testi-Text */}
-              <div className="flex justify-end">
-                <p className="b2" style={{ color: "var(--background)", maxWidth: "40%", textAlign: "right"}}>
-                  {testimonials[0]?.review}
-                </p>
-              </div>
-
-              {/* Topbar */}
-              < Topbar 
-              theme="dark"
-              leftText="KEEP SCROLLING"
-              rightText=""
-              />
-        </div>
-
-    </section>
-
+</section>
     <CTA />
     <Footer />
 

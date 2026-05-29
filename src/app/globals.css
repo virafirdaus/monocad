@@ -184,17 +184,61 @@ body {
 
 }
 
+/* Tablet */
 @media (max-width: 1024px) {
+  :root {
+    --text-extraH1: 100px;
+    --text-extraH2: 80px;
+    --text-H1: 42px;
+    --text-H2: 32px;
+    --text-H3: 26px;
+    --text-H4: 20px;
+    --text-H5: 18px;
+    --text-H6: 14px;
+    --text-B1: 18px;
+    --text-B2: 14px;
+    --text-B3: 12px;
+  }
   .padding-section {
     padding-left: 24px !important;
     padding-right: 24px !important;
   }
 }
 
+/* Mobile L */
+@media (max-width: 991px) {
+  :root {
+    --text-extraH1: 96px;
+    --text-extraH2: 72px;
+    --text-H1: 36px;
+    --text-H2: 28px;
+    --text-H3: 22px;
+    --text-H4: 18px;
+    --text-H5: 16px;
+    --text-H6: 14px;
+    --text-B1: 16px;
+    --text-B2: 14px;
+    --text-B3: 12px;
+  }
+}
+
+/* Mobile */
 @media (max-width: 768px) {
+  :root {
+    --text-extraH1: 72px;
+    --text-extraH2: 50px;
+    --text-H1: 30px;
+    --text-H2: 24px;
+    --text-H3: 20px;
+    --text-H4: 16px;
+    --text-H5: 14px;
+    --text-H6: 12px;
+    --text-B1: 14px;
+    --text-B2: 12px;
+    --text-B3: 12px;
+  }
   .padding-section,
   .about-section,
-  .content-testi,
   .footer-top,
   .footer-middle,
   .footer-bottom {
@@ -205,9 +249,10 @@ body {
     padding-right: 16px !important;
     gap: 24px !important;
   }
+  .project-card {
+    transform: scale(0.9) !important;
+    transform-origin: top left;
+    margin-right: calc(var(--w) * -0.6);
+    margin-bottom: calc(var(--h) * -0.6);
+  }
 }
-
-
-
-
-  

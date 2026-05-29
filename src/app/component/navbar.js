@@ -38,7 +38,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <nav className="flex justify-between items-center px-30 py-8 z-50" >
+    <nav className="flex justify-between items-center px-6 md:px-30 py-8 z-50" >
       <h4>MONOCAD</h4>
       <h4 className="cursor-pointer text-black px-6 py-2" onClick={() => setMenuOpen(true)}>MENU +</h4>
 
