@@ -222,7 +222,6 @@ body {
   }
 }
 
-/* Mobile */
 @media (max-width: 768px) {
   :root {
     --text-extraH1: 72px;
@@ -237,6 +236,15 @@ body {
     --text-B2: 12px;
     --text-B3: 12px;
   }
+
+  h1.extra2 {
+    font-size: 13vw !important;
+  }
+
+  h1.extra {
+    font-size: 15vw !important;
+  }
+
   .padding-section,
   .about-section,
   .footer-top,
@@ -250,9 +258,9 @@ body {
     gap: 24px !important;
   }
   .project-card {
-    transform: scale(0.9) !important;
+    transform: scale(0.6) !important;
     transform-origin: top left;
-    margin-right: calc(var(--w) * -0.6);
-    margin-bottom: calc(var(--h) * -0.6);
+    margin-right: -80px;
+    margin-bottom: -120px;
   }
 }
