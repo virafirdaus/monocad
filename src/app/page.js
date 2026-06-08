@@ -4,12 +4,14 @@ import Footer from "./component/footer";
 import CTA from "./component/cta";
 import Topbar from "./component/top_bar";
 import Button from "./component/button";
+import Animation from "./component/animation";
 import {
   getHeroData,
   getAboutData,
   getServicesData,
   getTestimonialsData,
   getProjectsData,
+  getFooterData,
 } from "@/lib/api";
  
 export default async function Page() {
@@ -18,25 +20,32 @@ export default async function Page() {
   const services = await getServicesData();
   const projects = await getProjectsData();
   const testimonials = await getTestimonialsData();
+  const footer = await getFooterData();
  
   return (
     <main>
+      <Animation />
+      <div className="navbar">
       <Navbar />
+      </div>
  
       {/* ───── HERO SECTION ───── */}
       <section
+      id="hero-section"
         className="padding-section"
-        style={{ paddingTop: "148px", paddingBottom: "30px", paddingLeft: "clamp(20px, 8vw, 120px)", paddingRight: "clamp(20px, 8vw, 120px)" }}>
+        style={{ paddingTop: "148px", paddingBottom: "30px", paddingLeft: "clamp(20px, 8vw, 120px)", paddingRight: "clamp(20px, 8vw, 120px)", overflow: "visible", position:"relative", zIndex: 1 }}>
 
           {/* HeroText + Button */}
             <div className="flex flex-col md:flex-row justify-between items-center md:items-end w-full gap-4">
                 <p
-                  className="text-sm md:text-base text-center md:text-left"
+                  className="hero-text b3 text-sm md:text-base text-center md:text-left"
                   style={{ maxWidth: "407px",color: "var(--neutral3)" }}
                 >
                   {hero.subheading}
                 </p>
+                <div className="hero-button">
                 <Button />
+                </div>
               </div>
   
         {/* BigTitle — font & translate scale proporsional dengan viewport */}
@@ -46,43 +55,45 @@ export default async function Page() {
           fontFamily: "var(--font-notch)",
           paddingTop: "clamp(32px, 6vw, 148px)",
           position: "relative",
-          height: "clamp(220px, 38vw, 520px)",
+          height: "clamp(150px, 55vw, 520px)",
           overflow: "visible",
         }}
       >
-        <span style={{ position: "absolute", left: "4%",   top: "20%", display: "inline-block", transform: "rotate(-45deg)" }}>M</span>
-        <span style={{ position: "absolute", left: "18%",  top: "40%", display: "inline-block", transform: "rotate(-5deg)" }}>O</span>
-        <span style={{ position: "absolute", left: "35%",  top: "28%", display: "inline-block", transform: "rotate(45deg)" }}>N</span>
-        <span style={{ position: "absolute", left: "48%",  top: "40%", display: "inline-block", transform: "rotate(-138deg)" }}>O</span>
-        <span style={{ position: "absolute", left: "58%",  top: "11.5%",display: "inline-block", transform: "rotate(-21deg)" }}>C</span>
-        <span style={{ position: "absolute", left: "68%",  top: "40%", display: "inline-block", transform: "rotate(-9deg)" }}>A</span>
-        <span style={{ position: "absolute", left: "82%",  top: "45%", display: "inline-block", transform: "rotate(-97deg)" }}>D</span>
+        <span className="hero-letter" style={{ position: "absolute", left: "4%",   top: "20%", display: "inline-block", transform: "rotate(-45deg)" }}>M</span>
+        <span className="hero-letter" style={{ position: "absolute", left: "18%",  top: "40%", display: "inline-block", transform: "rotate(-5deg)" }}>O</span>
+        <span className="hero-letter" style={{ position: "absolute", left: "35%",  top: "28%", display: "inline-block", transform: "rotate(45deg)" }}>N</span>
+        <span className="hero-letter" style={{ position: "absolute", left: "48%",  top: "40%", display: "inline-block", transform: "rotate(-138deg)" }}>O</span>
+        <span className="hero-letter" style={{ position: "absolute", left: "58%",  top: "11.5%",display: "inline-block", transform: "rotate(-21deg)" }}>C</span>
+        <span className="hero-letter" style={{ position: "absolute", left: "68%",  top: "40%", display: "inline-block", transform: "rotate(-9deg)" }}>A</span>
+        <span className="hero-letter" style={{ position: "absolute", left: "82%",  top: "45%", display: "inline-block", transform: "rotate(-97deg)" }}>D</span>
       </div>
  
         {/* 3D CAROUSEL — ukuran & translateZ responsif */}
         <div
-          className="relative w-full flex justify-center items-center overflow-visible"
+        id="carousel-wrapper"
+          className="carousel-wrapper relative w-full flex justify-center items-center overflow-visible"
           style={{
             perspective: "2000px",
-            height: "clamp(220px, 38vw, 500px)",
-            scale: "0.8",
+            height: "clamp(220px, 38vw, 550px)",
+            scale: "0.9"
           }}
         >
           <div
             style={{
               position: "relative",
-              width: "clamp(110px, 15vw, 220px)",
-              height: "clamp(160px, 22vw, 320px)",
+              width: "clamp(110px, 15vw, 250px)",
+              height: "clamp(160px, 22vw, 300px)",
               transformStyle: "preserve-3d",
             }}
           >
             {hero.gallery_images.map((url, i) => (
               <div
                 key={i}
+                className="carousel-card"
                 style={{
                   position: "absolute",
                   inset: 0,
-                  transform: `rotateY(${(i - 5) * 25}deg) translateZ(clamp(180px, 33vw, 650px))`,
+                  transform: `rotateY(${(i - 5) * 30}deg) translateZ(clamp(250px, 33vw, 650px))`,
                   backfaceVisibility: "visible",
                 }}
               >
@@ -111,33 +122,47 @@ export default async function Page() {
 
 
     {/* ABOUT SECTION */}
-    <section className="padding-section bg-neutral5 flex flex-col px-30 py-8" style={{ minHeight: "100vh", paddingLeft: "clamp(20px, 8vw, 120px)", paddingRight: "clamp(20px, 8vw, 120px)"}}>
+<section 
+  id="about-section"
+  className="about-section padding-section flex flex-col px-30 py-8" 
+  style={{ 
+    minHeight: "100vh", 
+    paddingLeft: "clamp(20px, 8vw, 120px)", 
+    paddingRight: "clamp(20px, 8vw, 120px)",
+    background: "var(--neutral5)", // tetap gelap
+    position: "relative",
+  }}
+>
+  {/* Topbar atas */}
+  <div className="about-meta-top">
+    <Topbar 
+      theme="dark"
+      leftText={about.section_label}
+      rightText={about.studio_name}
+    />
+  </div>
 
-      {/* Topbar */}
-       < Topbar 
-       theme="dark"
-       leftText={about.section_label}
-       rightText={about.studio_name}
-       />
+  {/* Content */}
+  <div className="flex-1 flex items-center justify-center">
+    <div style={{ maxWidth: "520px" }}>
+      <p 
+        className="about-text b3" 
+        style={{ color: "var(--background)", opacity: 0 }} // mulai opacity 0
+      >
+        {about.about_desc}
+      </p>
+    </div>
+  </div>
 
-      {/* Content */}
-      <div className="flex-1 flex items-center justify-center">
-        <div style={{ maxWidth: "520px" }}>
-          <p className="b3" style={{ color: "var(--background)" }}>
-            {about.about_desc}
-          </p>
-        </div>
-      </div>
-
-     {/* Topbar */}
-      < Topbar 
-       theme="dark"
-       leftText={hero.jam_operasional}
-       rightText={hero.studio_label}
-       />
-
-    </section>
-
+  {/* Topbar bawah */}
+  <div className="about-meta-bottom">
+    <Topbar 
+      theme="dark"
+      leftText={hero.jam_operasional}
+      rightText={hero.studio_label}
+    />
+  </div>
+</section>
 
 
 {/* SERVICES SECTION */}
@@ -329,7 +354,7 @@ export default async function Page() {
 
 </section>
     <CTA />
-    <Footer />
+    <Footer footer={footer} />
 
     
     </main>
