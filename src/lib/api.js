@@ -2,18 +2,20 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://monocad-api.vercel.a
 
 async function fetcher(endpoint) {
   const res = await fetch(`${API_URL}${endpoint}`, {
-    cache: 'no-store' // atau 'force-cache' kalau datanya jarang berubah
+    cache: 'no-store'
   })
   if (!res.ok) throw new Error(`Failed to fetch ${endpoint}`)
   return res.json()
 }
 
 export async function getHeroData() {
-  return fetcher('/hero')
+  const data = await fetcher('/hero')
+  return Array.isArray(data) ? data[0] : data
 }
 
 export async function getAboutData() {
-  return fetcher('/about')
+  const data = await fetcher('/about')
+  return Array.isArray(data) ? data[0] : data
 }
 
 export async function getServicesData() {
@@ -29,9 +31,11 @@ export async function getTestimonialsData() {
 }
 
 export async function getCtaData() {
-  return fetcher('/cta')
+  const data = await fetcher('/cta')
+  return Array.isArray(data) ? data[0] : data
 }
 
 export async function getFooterData() {
-  return fetcher('/footer')
+  const data = await fetcher('/footer')
+  return Array.isArray(data) ? data[0] : data
 }
