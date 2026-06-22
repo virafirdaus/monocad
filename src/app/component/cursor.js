@@ -10,50 +10,25 @@ export default function Cursor() {
   const vTopRef = useRef(null)
   const vBottomRef = useRef(null)
 
-  const GAP = 5 // jarak garis dari tengah
+  const GAP = 5
 
   useEffect(() => {
+    // set visible langsung
+    gsap.set(dotRef.current, { opacity: 1 })
+    gsap.set(bracketRef.current, { opacity: 0.3 })
+    gsap.set([hLeftRef.current, hRightRef.current, vTopRef.current, vBottomRef.current], { opacity: 0.3 })
+
     const moveCursor = (e) => {
       const x = e.clientX
       const y = e.clientY
 
-      // dot & bracket ikut cursor
       gsap.to(dotRef.current, { x, y, duration: 0.1, ease: 'power2.out' })
       gsap.to(bracketRef.current, { x, y, duration: 0.15, ease: 'power2.out' })
 
-      // garis kiri — dari 0 sampai x - GAP
-      gsap.to(hLeftRef.current, {
-        y,
-        width: x - GAP,
-        duration: 0.1,
-        ease: 'power2.out'
-      })
-
-      // garis kanan — dari x + GAP sampai ujung layar
-      gsap.to(hRightRef.current, {
-        x: x + GAP,
-        y,
-        width: `calc(100vw - ${x + GAP}px)`,
-        duration: 0.1,
-        ease: 'power2.out'
-      })
-
-      // garis atas — dari 0 sampai y - GAP
-      gsap.to(vTopRef.current, {
-        x,
-        height: y - GAP,
-        duration: 0.1,
-        ease: 'power2.out'
-      })
-
-      // garis bawah — dari y + GAP sampai ujung layar
-      gsap.to(vBottomRef.current, {
-        x,
-        y: y + GAP,
-        height: `calc(100vh - ${y + GAP}px)`,
-        duration: 0.1,
-        ease: 'power2.out'
-      })
+      gsap.to(hLeftRef.current, { y, width: x - GAP, duration: 0.1, ease: 'power2.out' })
+      gsap.to(hRightRef.current, { x: x + GAP, y, width: `calc(100vw - ${x + GAP}px)`, duration: 0.1, ease: 'power2.out' })
+      gsap.to(vTopRef.current, { x, height: y - GAP, duration: 0.1, ease: 'power2.out' })
+      gsap.to(vBottomRef.current, { x, y: y + GAP, height: `calc(100vh - ${y + GAP}px)`, duration: 0.1, ease: 'power2.out' })
     }
 
     window.addEventListener('mousemove', moveCursor)
@@ -61,50 +36,54 @@ export default function Cursor() {
   }, [])
 
   const lineStyle = {
-  mixBlendMode: 'difference',
-  pointerEvents: 'none',
-  zIndex: 9999,
-  position: 'fixed',
-  background: 'white',
-  opacity: 0.3, // ← hanya garis yang transparan
-}
+    mixBlendMode: 'difference',
+    pointerEvents: 'none',
+    zIndex: 9999,
+    position: 'fixed',
+    background: 'white',
+    opacity: 0.3,
+  }
 
-const solidStyle = {
-  mixBlendMode: 'difference',
-  pointerEvents: 'none',
-  zIndex: 9999,
-  position: 'fixed',
-  background: 'white',
-  opacity: 1, // ← dot & bracket tetap solid
-}
+  const solidStyle = {
+    mixBlendMode: 'difference',
+    pointerEvents: 'none',
+    zIndex: 9999,
+    position: 'fixed',
+    background: 'white',
+    opacity: 1,
+  }
 
   return (
     <>
       {/* Garis kiri */}
-      <div ref={hLeftRef} style={{ ...lineStyle, top: 0, left: 0, height: '1px', width: 0, transform: 'translateY(-50%)' }} />
+      <div ref={hLeftRef} className="cursor-hline" style={{ ...lineStyle, top: 0, left: 0, height: '1px', width: 0, transform: 'translateY(-50%)' }} />
 
       {/* Garis kanan */}
-      <div ref={hRightRef} style={{ ...lineStyle, top: 0, left: 0, height: '1px', width: 0, transform: 'translateY(-50%)' }} />
+      <div ref={hRightRef} className="cursor-hline" style={{ ...lineStyle, top: 0, left: 0, height: '1px', width: 0, transform: 'translateY(-50%)' }} />
 
       {/* Garis atas */}
-      <div ref={vTopRef} style={{ ...lineStyle, top: 0, left: 0, width: '1px', height: 0, transform: 'translateX(-50%)' }} />
+      <div ref={vTopRef} className="cursor-vline" style={{ ...lineStyle, top: 0, left: 0, width: '1px', height: 0, transform: 'translateX(-50%)' }} />
 
       {/* Garis bawah */}
-      <div ref={vBottomRef} style={{ ...lineStyle, top: 0, left: 0, width: '1px', height: 0, transform: 'translateX(-50%)' }} />
+      <div ref={vBottomRef} className="cursor-vline" style={{ ...lineStyle, top: 0, left: 0, width: '1px', height: 0, transform: 'translateX(-50%)' }} />
 
       {/* Dot tengah */}
-      <div ref={dotRef} style={{
-        ...solidStyle,
-        top: 0,
-        left: 0,
-        width: '12px',
-        height: '12px',
-        transform: 'translate(-50%, -50%)',
-      }} />
+<div ref={dotRef} className="cursor-dot" style={{
+  pointerEvents: 'none',
+  zIndex: 9999,
+  position: 'fixed',
+  background: 'white', // ← hitam
+  top: 0,
+  left: 0,
+  width: '12px',
+  height: '12px',
+  transform: 'translate(-50%, -50%)',
+  // tidak pakai mixBlendMode sama sekali
+}} />
 
       {/* Corner Brackets */}
-      <div ref={bracketRef} style={{
-        mixBlendMode: 'difference',
+      <div ref={bracketRef} className="cursor-bracket" style={{
+        mixBlendMode: 'exclusion',
         pointerEvents: 'none',
         zIndex: 9999,
         position: 'fixed',

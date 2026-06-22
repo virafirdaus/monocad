@@ -1,71 +1,37 @@
-import { supabase } from "./supabase";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://monocad-api.vercel.app'
+
+async function fetcher(endpoint) {
+  const res = await fetch(`${API_URL}${endpoint}`, {
+    cache: 'no-store' // atau 'force-cache' kalau datanya jarang berubah
+  })
+  if (!res.ok) throw new Error(`Failed to fetch ${endpoint}`)
+  return res.json()
+}
 
 export async function getHeroData() {
-    const {data, error} = await supabase
-    .from('hero')
-    .select('*')
-    .single()
-
-    if (error) console.error('Error fetching hero:', error)
-      return data 
-  }
+  return fetcher('/hero')
+}
 
 export async function getAboutData() {
-    const {data, error} = await supabase
-    .from('about')
-    .select('*')
-    .single()
-
-    if (error) console.error('Error fetching about:', error)
-      return data 
-  }
+  return fetcher('/about')
+}
 
 export async function getServicesData() {
-    const {data, error} = await supabase
-    .from('services')
-    .select('*')
-    .order('sort_order')
-
-    if (error) console.error('Error fetching services:', error)
-      return data 
+  return fetcher('/services')
 }
 
 export async function getProjectsData() {
-    const {data, error} = await supabase
-    .from('projects')
-    .select('*')
-    .order('sort_order')
-
-    if (error) console.error('Error fetching projects:', error)
-      return data 
+  return fetcher('/projects')
 }
 
 export async function getTestimonialsData() {
-    const {data, error} = await supabase
-    .from('testimonials')
-    .select('*')
-    .order('sort_order')
-
-    if (error) console.error('Error fetching testimonials:', error)
-      return data 
+  return fetcher('/testimonials')
 }
 
 export async function getCtaData() {
-    const {data, error} = await supabase
-    .from('cta')
-    .select('*')
-    .single()
-
-    if (error) console.error('Error fetching cta:', error)
-      return data 
+  return fetcher('/cta')
 }
 
 export async function getFooterData() {
-    const {data, error} = await supabase
-    .from('footer')
-    .select('*')
-    .single()
-
-    if (error) console.error('Error fetching footer:', error)
-      return data 
+  return fetcher('/footer')
 }

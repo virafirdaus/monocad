@@ -49,6 +49,7 @@ export default async function Page() {
               </div>
   
         {/* BigTitle — font & translate scale proporsional dengan viewport */}
+        
         <div
         style={{
           fontSize: "clamp(56px, 18vw, 280px)",
@@ -57,8 +58,10 @@ export default async function Page() {
           position: "relative",
           height: "clamp(150px, 55vw, 520px)",
           overflow: "visible",
-        }}
-      >
+        }}>
+          <h1 className="sr-only">
+            MonoCAD Photography Studio
+          </h1>
         <span className="hero-letter" style={{ position: "absolute", left: "4%",   top: "20%", display: "inline-block", transform: "rotate(-45deg)" }}>M</span>
         <span className="hero-letter" style={{ position: "absolute", left: "18%",  top: "40%", display: "inline-block", transform: "rotate(-5deg)" }}>O</span>
         <span className="hero-letter" style={{ position: "absolute", left: "35%",  top: "28%", display: "inline-block", transform: "rotate(45deg)" }}>N</span>
@@ -99,7 +102,6 @@ export default async function Page() {
               >
                 <div className="relative w-full h-full shadow-2xl">
                   <Image
-                    unoptimized
                     src={url}
                     alt="gallery"
                     fill
@@ -147,7 +149,7 @@ export default async function Page() {
     <div style={{ maxWidth: "520px" }}>
       <p 
         className="about-text b3" 
-        style={{ color: "var(--background)", opacity: 0 }} // mulai opacity 0
+        style={{ color: "var(--background)" }} // mulai opacity 0
       >
         {about.about_desc}
       </p>
